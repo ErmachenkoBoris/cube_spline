@@ -8,7 +8,7 @@ body {
 }
 
 canvas{
-    background: cornflowerblue;
+    background: wheat;
 }
 
 .content {
@@ -20,14 +20,25 @@ canvas{
     flex-direction: column;
 
 }
+.table{
+    height: 500px;
+    position: absolute;
+    left: 20px;
+    top:100px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+
+}
 
 .button {
     color: white;
     margin: 10px;
     border-radius: 10px;
     display: flex;
-    width: 100px;
+    width: 200px;
     height: 50px;
+    font-weight: 500;
     background: darkblue;
     justify-content: center;
     align-items: center;
@@ -36,4 +47,11 @@ canvas{
 
 .button:hover{
     cursor: pointer;
+}
+
+.input {
+width: 200px;
+height: 50px;
+font-size: 14px;
+color: black;
 }
