@@ -12,8 +12,8 @@ window.onload = function() {
     //------------draw field---------------------------
     ctx.strokeStyle = "silver";
 
-    for (var i = 0; i < canvas.width; i += 25) {
-        for (var j = 0; j < canvas.height; j += 25) {
+    for (i = 0; i < canvas.width; i += 25) {
+        for (j = 0; j < canvas.height; j += 25) {
         ctx.strokeRect(i, j, 25, 25);
         }
     }
@@ -55,7 +55,7 @@ class Spline {
 }
 
 function init(){
-    
+
     Sx=new Array(N);
     h=drawN/N;
     for(i=0;i<N+1;i++){
@@ -97,13 +97,14 @@ function findC(){
     beta[0]=0;
     Sx[N-1].c=0;
     Sx[0].c=0;
+  
     for(i=1;i<N-1;++i) {
-        alpha[i]=-1/(4+alpha[i-1]);
-        beta[i]=1/(4+alpha[i-1]) * (6/(h*h)*(sourceFunction(Sx[i+1].x)-2*sourceFunction(Sx[i].x)+sourceFunction(Sx[i-1].x))-beta[i-1]);
+        y = 4 + 1* alpha[i - 1];//4,1,1 - это коэффициенты )
+        alpha[i] = -1/ y;
+        beta[i] = ( 1 / y*(6/(h*h)*(sourceFunction(Sx[i+1].x)-2*sourceFunction(Sx[i].x)+sourceFunction(Sx[i-1].x)) - 1 * beta[i - 1]));
     }
     for(i=N-2;i>0;i--) {
         Sx[i].c=alpha[i]*Sx[i+1].c+beta[i];
-        console.log('Sx[i].c ->', Sx[i].c);
     }
 }
 
@@ -119,8 +120,6 @@ function drawSpline() {
 
     input=document.getElementById("input");
     if(parseInt(input.value)) {
-        console.log(input.value);
-        console.log(parseInt(input.value));
         N=input.value;
     } else {
         input.value=`DEFAULT: N = ${N}`;
