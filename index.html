@@ -11,7 +11,7 @@
 
 <body>
   <div class="content">
-    <canvas height='500' width='500' id="canvas">
+    <canvas height='550' width='550' id="canvas">
 
     </canvas>
     <div class="button" onclick="drawSpline()">
@@ -19,9 +19,15 @@
         y(x) = (cos(x<sup>2</sup>) + sin(x<sup>3</sup>)) / 7
       </p>
     </div>
-    <input id="input" type="text" class="input" placeholder="enter count of points, please">
 
-    <div id="table" class="table">
+    <div class="control">
+      <label class="label" for="input">Size of step:_</label>
+      <input id="input" type="text" class="input" placeholder="enter size of step, please">
+      <div class="button" onclick="reset()">RELOAD</div>
+    </div>
+  
+
+      <div id="table" class="table" >
     </div>
 
   </div>

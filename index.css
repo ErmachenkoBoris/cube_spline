@@ -10,6 +10,14 @@ body {
 canvas{
     background: wheat;
 }
+.control{
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    font-size: 22px;
+}
 
 .content {
     width: 100%;
