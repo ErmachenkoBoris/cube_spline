@@ -15,9 +15,12 @@
 
     </canvas>
     <div class="button" onclick="drawSpline()">
-      <p>
-        y(x) = (cos(x<sup>2</sup>) + sin(x<sup>3</sup>)) / 7
-      </p>
+      <span id="func-start"> y(x) = </span>
+      <div class="frac">
+        <span>(cos(x<sup>2</sup>) + sin(x<sup>3</sup>))</span>
+        <span class="symbol">/</span>
+        <span class="bottom">7</span>
+      </div>
     </div>
 
     <div class="control">
@@ -25,9 +28,9 @@
       <input id="input" type="text" class="input" placeholder="enter size of step, please">
       <div class="button" onclick="reset()">RELOAD</div>
     </div>
-  
 
-      <div id="table" class="table" >
+
+    <div id="table" class="table">
     </div>
 
   </div>
