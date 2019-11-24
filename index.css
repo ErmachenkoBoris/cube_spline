@@ -58,8 +58,9 @@ canvas{
 }
 
 .input {
-width: 200px;
-height: 50px;
-font-size: 14px;
-color: black;
+  margin-left: 20px;
+  width: 200px;
+  height: 50px;
+  font-size: 14px;
+  color: black;
 }
