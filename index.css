@@ -58,8 +58,30 @@ canvas{
 }
 
 .input {
-width: 200px;
-height: 50px;
-font-size: 14px;
-color: black;
+  margin-left: 20px;
+  width: 200px;
+  height: 50px;
+  font-size: 14px;
+  color: black;
+}
+
+.frac {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  letter-spacing: 0.001em;
+  text-align: center;
+}
+.frac > span {
+  display: block;
+  padding: 0.1em;
+}
+.frac span.bottom {
+  border-top: thin solid #ffffff;
+}
+.frac span.symbol {
+  display: none;
+} 
+#func-start {
+  margin-right: 10px;
 }
