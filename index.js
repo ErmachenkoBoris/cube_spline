@@ -2,6 +2,8 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const drawN = 1000
 const table = document.getElementById("table");
+const halfWidth = canvas.width / 2;
+const halfHeight = canvas.height / 2;
 let N = 50;
 let Sx = null;
 let h = null;
@@ -17,28 +19,22 @@ window.onload = () => {
       ctx.strokeRect(i, j, 25, 25);
     }
   }
-  ctx.fillText('0', canvas.width / 2, canvas.height / 2);
-  ctx.fillText('1', canvas.width / 2 + 100, canvas.height / 2);
-  ctx.fillText('-1', canvas.width / 2 - 100, canvas.height / 2);
-  ctx.fillText('2', canvas.width / 2 + 200, canvas.height / 2);
-  ctx.fillText('-2', canvas.width / 2 - 200, canvas.height / 2);
 
-  ctx.fillText('0', canvas.width / 2, canvas.height / 2);
-  ctx.fillText('0.1', canvas.width / 2, canvas.height / 2 - 100);
-  ctx.fillText('-0.1', canvas.width / 2, canvas.height / 2 + 100);
-  ctx.fillText('0.2', canvas.width / 2, canvas.height / 2 - 200);
-  ctx.fillText('-0.2', canvas.width / 2, canvas.height / 2 + 200);
+  for (let i = -2; i <= 2; i++) {
+    ctx.fillText(i, halfWidth + i * 100, halfHeight);
+    ctx.fillText(i * 0.1, halfWidth, halfHeight + i * 100);
+  }
 
   ctx.lineWidth = 1;
   ctx.strokeStyle = "black";
   ctx.beginPath()
-  ctx.moveTo(canvas.width / 2, 0)
-  ctx.lineTo(canvas.width / 2, canvas.height)
+  ctx.moveTo(halfWidth, 0)
+  ctx.lineTo(halfWidth, canvas.height)
   ctx.stroke()
 
   ctx.beginPath()
-  ctx.moveTo(0, canvas.height / 2)
-  ctx.lineTo(canvas.width, canvas.height / 2)
+  ctx.moveTo(0, halfHeight)
+  ctx.lineTo(canvas.width, halfHeight)
   ctx.stroke();
 
 };
@@ -127,14 +123,12 @@ function drawSpline() {
   findC();
   findBD();
   let SxArr = new Array(drawN + 1);
-  for (let i = 0; i <= drawN; i++) {
-    SxArr[i] = 0;
-  }
+
   findSpline(SxArr, Sx);
 
   //----------------------spline------------------------------
-  const cx = canvas.width / 2;
-  const cy = canvas.height / 2;
+  const cx = halfWidth;
+  const cy = halfHeight;
   // - to =
   ctx.strokeStyle = "red";
 
