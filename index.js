@@ -85,7 +85,14 @@ function sourceFunction (x, draw = 0) {
 function findSpline (SxArr, Sx) {
   for (let x = -drawN / 2; x < drawN / 2; x++) {
     const xi = parseInt((x + drawN / 2) / (h)) + 1;
+
     SxArr[x] = Sx[xi].a + Sx[xi].b * (x - Sx[xi].x) + Sx[xi].c * Math.pow((x - Sx[xi].x), 2) / 2 + Sx[xi].d * Math.pow((x - Sx[xi].x), 3) / 6;
+    const xPos = x / 100;
+    if (xPos === Math.round(xPos)) {
+      const div = document.createElement('div');
+      div.textContent = `x=${xPos} y=${(-SxArr[x] / scale).toFixed(2)}`;
+      table.appendChild(div);
+    }
   }
 }
 
@@ -126,6 +133,7 @@ function drawSpline () {
   if (parseInt(input.value * 100)) {
     Step = input.value * 100;
     N = parseInt(drawN / Step);
+    if (drawN % N) N++;
   } else {
     input.value = `${Step / 100}`;
   }
@@ -162,7 +170,7 @@ function drawSpline () {
   ctx.beginPath();
   for (let i = -drawN; i < drawN; i++) {
     const x = i;
-    const y = sourceFunction(x, 1);
+    const y = sourceFunction(x);
     ctx.lineTo(cx + x, cy + y);
   }
   ctx.stroke();
