@@ -19,7 +19,7 @@ function drawField () {
     }
   }
 
-  for (let i = -2; i <= 2; i++) {
+  for (let i = -5; i <= 5; i++) {
     ctx.fillText(i, halfWidth + i * 100, halfHeight);
     ctx.fillText(i * 0.1, halfWidth, halfHeight + i * 100);
   }
@@ -55,7 +55,6 @@ class Spline {
 function reset () {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawField();
-  const table = document.getElementById('table');
   while (table.firstChild) {
     table.removeChild(table.firstChild);
   }
@@ -129,6 +128,7 @@ function findBD () {
 
 // eslint-disable-next-line no-unused-vars
 function drawSpline () {
+  reset();
   const input = document.getElementById('input');
   if (parseInt(input.value * 100)) {
     Step = input.value * 100;
@@ -174,4 +174,32 @@ function drawSpline () {
     ctx.lineTo(cx + x, cy + y);
   }
   ctx.stroke();
+  const checkbox = document.getElementById('checkbox');
+  if (checkbox.checked) {
+    findDifferences(SxArr);
+  }
+}
+
+function findDifferences (SxArr) {
+  const cx = halfWidth;
+  const cy = halfHeight;
+  let maxDiff = -1;
+  let maxDiffX = 0;
+  for (let i = -drawN + Step / 2; i < drawN - Step / 2; i += Step) {
+    const x = i;
+    const y1 = sourceFunction(x);
+    const y2 = SxArr[x];
+    ctx.beginPath();
+    if (Math.abs(y1 - y2) > maxDiff) {
+      maxDiff = Math.abs(y1 - y2);
+      maxDiffX = i;
+    }
+    ctx.moveTo(cx + x, cy + y1);
+    ctx.lineTo(cx + x, cy + y2);
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
+  }
+  const div = document.createElement('div');
+  div.textContent = `MAX deviation = ${(maxDiff / scale).toFixed(2)} ( x = ${maxDiffX / 100} )`;
+  table.appendChild(div);
 }
