@@ -85,6 +85,8 @@ function findSpline (SxArr, Sx) {
   for (let x = -drawN / 2; x < drawN / 2; x++) {
     const xi = parseInt((x + drawN / 2) / (h)) + 1;
 
+    console.log('a = ', Sx[xi].a.toFixed(2), ' b = ', Sx[xi].b.toFixed(2), ' c = ', Sx[xi].c.toFixed(2), ' d = ', Sx[xi].d.toFixed(2));
+
     SxArr[x] = Sx[xi].a + Sx[xi].b * (x - Sx[xi].x) + Sx[xi].c * Math.pow((x - Sx[xi].x), 2) / 2 + Sx[xi].d * Math.pow((x - Sx[xi].x), 3) / 6;
     const xPos = x / 100;
     if (xPos === Math.round(xPos)) {
@@ -168,6 +170,8 @@ function drawSpline () {
 
   ctx.moveTo(cx, cy);
   ctx.beginPath();
+  ctx.lineWidth = 2;
+
   for (let i = -drawN; i < drawN; i++) {
     const x = i;
     const y = sourceFunction(x);
